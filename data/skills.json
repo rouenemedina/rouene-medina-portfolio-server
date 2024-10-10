@@ -1,0 +1,177 @@
+[
+  {
+    "id": 1,
+    "title": "PROGRAMMING LANGUAGES",
+    "content": [
+      {
+        "id": 1,
+        "title": "HTML",
+        "image": "/images"
+      },
+      {
+        "id": 2,
+        "title": "CSS",
+        "image": "/images"
+      },
+      {
+        "id": 3,
+        "title": "Sass",
+        "image": "/images"
+    },
+      {
+        "id": 4,
+        "title": "JavaScript",
+        "image": "/images"
+      },
+      {
+        "id": 5,
+        "title": "TypeScript",
+        "image": "/images"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "FRAMEWORKS",
+    "content": [
+      {
+        "id": 1,
+        "title": "React",
+        "image": "/images"
+      },
+      {
+        "id": 2,
+        "title": "Node.js",
+        "image": "/images"
+      },
+      {
+        "id": 3,
+        "title": "Express",
+        "image": "/images"
+      },
+      {
+        "id": 4,
+        "title": "Knex",
+        "image": "/images"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "DATABASES",
+    "content": [
+      {
+        "id": 1,
+        "title": "MySQL",
+        "image": "/images"
+      },
+      {
+        "id": 2,
+        "title": "PostgreSQL",
+        "image": "/images"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "WEB SERVICES",
+    "content": [
+      {
+        "id": 1,
+        "title": "REST APIs",
+        "image": "/images"
+      },
+      {
+        "id": 2,
+        "title": "Web APIs",
+        "image": "/images"
+      },
+      {
+        "id": 3,
+        "title": "Axios",
+        "image": "/images"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "API TESTING",
+    "content": [
+      {
+        "id": 1,
+        "title": "Postman",
+        "image": "/images"
+      },
+      {
+        "id": 2,
+        "title": "Thunder Client",
+        "image": "/images"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "VERSION CONTROL", 
+    "content": [
+      {
+        "id": 1,
+        "title": "GitHub",
+        "image": "/images"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "DEVELOPMENT TOOLS",
+    "content": [
+      {
+        "id": 1,
+        "title": "Visual Studio Code",
+        "image": "/images"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "DEPLOYMENT", 
+    "content": [
+      {
+        "id": 1,
+        "title": "Netlify",
+        "image": "/images"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "DESIGN AND PROTOTYPING",
+    "content": [
+      {
+        "id": 1,
+        "title": "Figma",
+        "image": "/images"
+      },
+      {
+        "id": 2,
+        "title": "Adobe Creative Suite",
+        "image": "/images"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "PROJECT MANAGEMENT", 
+    "content": [
+      {
+        "id": 1,
+        "title": "Jira",
+        "image": "/images"
+      }, 
+      {
+        "id": 2,
+        "title": "Trello",
+        "image": "/images"
+      }
+    ]
+  }
+]

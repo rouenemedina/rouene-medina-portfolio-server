@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "title": "PhotoNest",
+    "content": [
+      {
+        "id": 1,
+        "description": " A dynamic web application designed to showcase photographer’s portfolios, emphasizing robust functionality and visual appeal.",
+        "image": "/images",
+        "demo": "https://youtu.be/sHdhveGVQmI",
+        "github": "https://github.com/rouenemedina/rouene-medina-photonest"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "PhotoNest v2.0",
+    "content": [
+      {
+        "id": 1,
+        "description": " Welcome to the second version of PhotoNest, a responsive application designed for photographers to showcase their work and connect with clients. This version has been entirely rewritten in TypeScript to enhance code reliability and maintainability.",
+        "image": "/images",
+        "demo": "COMING SOON",
+        "github": "https://github.com/rouenemedina/rouene-medina-photonest-v2"
+      }
+    ]
+  }
+]

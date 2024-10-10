@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "Rouene Medina",
+    "subtitle": "",
+    "content": [
+      {
+        "id": 1,
+        "description": "Hi, my name is Rouene Medina and I am a full-stack software developer.",
+        "image": "/images"
+      },
+      {
+        "id": 2,
+        "description": "I’ve always been drawn to creativity and problem-solving, which led me to explore both project management in construction and design and entrepreneurship in the creative sector.",
+        "image": "/images"
+      },
+      {
+        "id": 3,
+        "description": "However, my real passion emerged when I discovered software engineering, particularly front-end and full-stack development.",
+        "image": "/images"
+      },
+      {
+        "id": 4,
+        "description": "Transitioning to tech allowed me to combine my love for design with my growing technical knowledge in coding, giving me the chance to create visually appealing, user-friendly digital experiences that are not only functional but impactful.",
+        "image": "/images"
+      },
+      {
+        "id": 5,
+        "description": "Additionally, I am excited to continue my journey as a developer. After completing my diploma in an intensive software engineering bootcamp, I gained hands-on experience with various technologies like HTML, CSS, JavaScript, TypeScript, and React.",
+        "image": "/images"
+      },
+      {
+        "id": 6,
+        "description": "I learned how to build responsive, dynamic websites. I also worked with MySQL and PostgreSQL databases, and utilized REST APIs and Web APIs to create seamless integrations. Tools like GitHub, Postman, Thunder Client, and Visual Studio Code have been essential in my development process, while Figma and Adobe Creative Suite support my design work.",
+        "image": "/images"
+      },
+      {
+        "id": 7,
+        "description": "Now, I’m focused on using my diverse background to craft seamless digital experiences, blending creativity and technology to bring ideas to life through code, ensuring that every element not only looks good but also functions seamlessly.",
+        "image": "/images"
+      }
+    ]
+  }
+]
