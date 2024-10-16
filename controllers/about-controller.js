@@ -15,8 +15,7 @@ const getAbout = async (req, res) => {
             id: about.id,
             title: about.title,
             subtitle: about.subtitle,
-            description: about.description,
-            image: about.image
+            content: about.content
         }
     })
     res.json(rawData);
