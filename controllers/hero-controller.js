@@ -1,5 +1,3 @@
-import express from "express";
-import "dotenv/config";
 import fs from "fs";
 
 //function to read the hero.json file 
