@@ -10,6 +10,19 @@ const readHero = () => {
 }
 
 // GET /hero
-app.get("/hero", (req, res) => {
+const getHero = async (req, res) => {
     const heroData = readHero();
-})
+
+    const rawData = heroData.map((hero) => {
+        return {
+            id: hero.id,
+            name: hero.name,
+            position: hero.position,
+            location: hero.location,
+            image: hero.image
+        }
+    })
+    res.json(rawData);
+}
+
+export { getHero };
