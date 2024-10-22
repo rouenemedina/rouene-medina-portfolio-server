@@ -20,6 +20,7 @@ const getHero = async (req, res) => {
             image: hero.image
         }
     })
+
     res.json(rawData);
 }
 
