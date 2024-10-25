@@ -1,4 +1,9 @@
 import fs from "fs";
+import initKnex from "knex";
+import configuration from "../knexfile.js";
+import "dotenv/config";
+
+const knex = initKnex(configuration);
 
 //function to read the hero.json file 
 const readHero = () => {
@@ -8,6 +13,7 @@ const readHero = () => {
 }
 
 // GET /hero
+// get hero data from json file
 const getHero = async (req, res) => {
     const heroData = readHero();
 
@@ -24,4 +30,17 @@ const getHero = async (req, res) => {
     res.json(rawData);
 }
 
-export { getHero };
+// get hero data from database
+const getHeroData = async (req, res) => {
+    try {
+
+    } catch (err) {
+        console.log("Error fetching data", err);
+        res.status(400).json({
+            message: "Error retrieving data.",
+            error: "400",
+        });
+    }
+}
+
+export { getHero, getHeroData };
