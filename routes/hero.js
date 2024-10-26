@@ -3,6 +3,6 @@ import * as heroController from "../controllers/hero-controller.js";
 
 const router = express.Router();
 
-router.route("/").get(heroController.getHero);
+router.route("/").get(heroController.getHero).get(heroController.getHeroData);
 
 export default router;
