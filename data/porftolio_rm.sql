@@ -5,3 +5,6 @@
 --     hero_location VARCHAR(255),
 --     hero_image VARCHAR(255)
 -- );
+
+-- INSERT INTO hero (hero_name, hero_position, hero_location)
+-- VALUES ('ROUENE MEDINA', 'Full Stack Software Developer', 'based in Toronto, Ontario');
