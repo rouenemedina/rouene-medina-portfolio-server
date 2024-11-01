@@ -1,24 +1,23 @@
-import fs from "fs";
+import initKnex from "knex";
+import configuration from "../knexfile.js";
+import "dotenv/config";
 
-const readAbout = () => {
-    const aboutFile = fs.readFileSync("./data/about.json");
-    const aboutData = JSON.parse(aboutFile);
-    return aboutData;
-}
+const knex = initKnex(configuration);
 
 // GET /about
-const getAbout = async (req, res) => {
-    const aboutData = readAbout();
-
-    const rawData = aboutData.map((about) => {
-        return {
-            id: about.id,
-            title: about.title,
-            subtitle: about.subtitle,
-            content: about.content
-        }
-    })
-    res.json(rawData);
+const getAboutData = async (req, res) => {
+    try {
+        const response = await knex("about").select();
+        res.status(200).json(response);
+    } catch(err) {
+        console.log("Error fetching data", err);
+        res.status(400).json({
+            message: "Error retrieving data.",
+            error: "400",
+        });
+    }
 }
 
-export { getAbout };
+
+
+export { getAboutData };
