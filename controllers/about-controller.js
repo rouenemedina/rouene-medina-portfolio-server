@@ -18,6 +18,4 @@ const getAboutData = async (req, res) => {
     }
 }
 
-
-
 export { getAboutData };
