@@ -16,7 +16,7 @@ const cloudFolder = process.env.CLOUD_FOLDER;
 const getImageUrl = async (req, res) => {
   const { public_id, tablename } = req.params;
   try {
-    //Get the specific image url
+    //Retrieve the image url from cloudinary of a specific image(public_id)
     const response = await cloudinary.api.resource(`${cloudFolder}/${public_id}`,{
       type: "upload",
     });
@@ -31,9 +31,9 @@ const getImageUrl = async (req, res) => {
     console.log("Image URL:", imageUrl);
   } catch (err) {
     console.log("Error fetching data", err);
-    res.status(500).json({
+    res.status(400).json({
       message: "Error retrieving data.",
-      error: "500",
+      error: "400",
     });
   }
 };
