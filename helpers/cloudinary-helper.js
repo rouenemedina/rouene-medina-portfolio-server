@@ -12,9 +12,8 @@ const cloudKey = process.env.CLOUD_KEY;
 
 const cloudFolder = process.env.CLOUD_FOLDER;
 
-// Get image url from cloudinary
-const getImageUrl = async (req, res) => {
-  const { public_id, tablename } = req.params;
+// Helper Function: Retrieve image url from cloudinary and insert it to the database
+const getImageUrl = async (public_id, tablename) => {
   try {
     //Retrieve the image url from cloudinary of a specific image(public_id)
     const response = await cloudinary.api.resource(`${cloudFolder}/${public_id}`,{
@@ -24,11 +23,7 @@ const getImageUrl = async (req, res) => {
 
     //Insert the image url into the database table
     await knex(tablename).insert({ image: imageUrl });
-    res.status(200).json({
-        message: `Image URL retrieved successfully and inserted into ${tablename} table`,
-        data: imageUrl,
-    });
-    console.log("Image URL:", imageUrl);
+    return imageUrl;
   } catch (err) {
     console.log("Error fetching data", err);
     res.status(400).json({
