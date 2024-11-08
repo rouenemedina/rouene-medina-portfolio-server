@@ -29,4 +29,29 @@ const getAboutData = async (req, res) => {
   }
 };
 
-export { getAboutData };
+// GET /aboutcontent
+const getAboutContentData = async (req, res) => {
+  try {
+    const aboutContentData = await knex("aboutcontent").select();
+    console.log(aboutContentData);
+    if (!aboutContentData) {
+      return res.status(404).json({
+        message: "Data not found.",
+        error: "404",
+      });
+    }
+
+    res.status(200).json({
+      message: "Data retrieved successfully.",
+      data: aboutContentData,
+    });
+  } catch (err) {
+    console.log("Error fetching data", err);
+    res.status(400).json({
+      message: "Error retrieving data.",
+      error: "400",
+    });
+  }
+};
+
+export { getAboutData, getAboutContentData };
