@@ -2,7 +2,6 @@ import fs from "fs";
 import initKnex from "knex";
 import configuration from "../knexfile.js";
 import "dotenv/config";
-// import { getImageUrl } from "../helpers/cloudinary-helper.js";
 
 const knex = initKnex(configuration);
 const getHeroData = async (req, res) => {
