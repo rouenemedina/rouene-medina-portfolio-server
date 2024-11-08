@@ -24,5 +24,5 @@ app.use("/skills", skillsRoutes);
 app.use("/socials", socialsRoutes);
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-})
+  console.log(`Server is running on port ${PORT}`);
+});

@@ -16,9 +16,12 @@ const cloudFolder = process.env.CLOUD_FOLDER;
 const getImageUrl = async (public_id, tablename) => {
   try {
     //Retrieve the image url from cloudinary of a specific image(public_id)
-    const response = await cloudinary.api.resource(`${cloudFolder}/${public_id}`,{
-      type: "upload",
-    });
+    const response = await cloudinary.api.resource(
+      `${cloudFolder}/${public_id}`,
+      {
+        type: "upload",
+      }
+    );
     const imageUrl = response.secure_url;
 
     //Insert the image url into the database table

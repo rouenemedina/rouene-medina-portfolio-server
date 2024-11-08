@@ -1,9 +1,9 @@
 [
-    {
-        "id": 1,
-        "name": "ROUENE MEDINA",
-        "position": "Full Stack Software Developer",
-        "location": "based in Toronto, Ontario",
-        "image": "/images"
-    }
+  {
+    "id": 1,
+    "name": "ROUENE MEDINA",
+    "position": "Full Stack Software Developer",
+    "location": "based in Toronto, Ontario",
+    "image": "/images"
+  }
 ]

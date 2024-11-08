@@ -1,13 +1,13 @@
 -- CREATE TABLE hero (
---     hero_id SERIAL PRIMARY KEY,
---     hero_name VARCHAR(255),
---     hero_position VARCHAR(255),
---     hero_location VARCHAR(255),
---     hero_image VARCHAR(255)
+--     id SERIAL PRIMARY KEY,
+--     name VARCHAR(255),
+--     position VARCHAR(255),
+--     location VARCHAR(255),
+--     imageUrl VARCHAR(255)
 -- );
 
--- INSERT INTO hero (hero_name, hero_position, hero_location)
--- VALUES ('ROUENE MEDINA', 'Full Stack Software Developer', 'based in Toronto, Ontario');
+-- INSERT INTO hero (name, position, location, imageUrl)
+-- VALUES ('ROUENE MEDINA', 'Full Stack Software Developer', 'based in Toronto, Ontario','https://res.cloudinary.com/dzqivwyjr/image/upload/v1730360859/hero_rdv0mt.jpg');
 
 -- CREATE TABLE about (
 --     id SERIAL PRIMARY KEY,

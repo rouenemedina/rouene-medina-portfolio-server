@@ -17,7 +17,7 @@
         "id": 3,
         "title": "Sass",
         "image": "/images"
-    },
+      },
       {
         "id": 4,
         "title": "JavaScript",
@@ -111,7 +111,7 @@
   },
   {
     "id": 6,
-    "title": "VERSION CONTROL", 
+    "title": "VERSION CONTROL",
     "content": [
       {
         "id": 1,
@@ -133,7 +133,7 @@
   },
   {
     "id": 8,
-    "title": "DEPLOYMENT", 
+    "title": "DEPLOYMENT",
     "content": [
       {
         "id": 1,
@@ -160,13 +160,13 @@
   },
   {
     "id": 10,
-    "title": "PROJECT MANAGEMENT", 
+    "title": "PROJECT MANAGEMENT",
     "content": [
       {
         "id": 1,
         "title": "Jira",
         "image": "/images"
-      }, 
+      },
       {
         "id": 2,
         "title": "Trello",
