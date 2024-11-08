@@ -1,4 +1,3 @@
-import fs from "fs";
 import initKnex from "knex";
 import configuration from "../knexfile.js";
 import "dotenv/config";

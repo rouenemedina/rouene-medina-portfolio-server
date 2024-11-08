@@ -1,24 +1,32 @@
-import fs from "fs";
+import initKnex from "knex";
+import configuration from "../knexfile.js";
+import "dotenv/config";
 
-const readSocials = () => {
-  const socialsFile = fs.readFileSync("./data/socials.json");
-  const socialsData = JSON.parse(socialsFile);
-  return socialsData;
-};
+const knex = initKnex(configuration);
 
 // GET /socials
 const getSocials = async (req, res) => {
-  const socialsData = readSocials();
+  try {
+    const socialsData = await knex("socials").select();
 
-  const rawData = socialsData.map((social) => {
-    return {
-      id: social.id,
-      name: social.name,
-      url: social.url,
-      image: social.image,
-    };
-  });
-  res.json(rawData);
+    if (!socialsData) {
+      return res.status(404).json({
+        message: "Data not found.",
+        error: "404",
+      });
+    }
+
+    res.status(200).json({
+      message: "Data retrieved successfully.",
+      data: socialsData,
+    });
+  } catch(err) {
+    console.log("Error fetching data", err);
+    res.status(400).json({
+      message: "Error retrieving data.",
+      error: "400",
+    });
+  }
 };
 
 export { getSocials };
