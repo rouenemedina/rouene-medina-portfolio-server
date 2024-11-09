@@ -122,17 +122,6 @@
   },
   {
     "id": 7,
-    "title": "DEVELOPMENT TOOLS",
-    "content": [
-      {
-        "id": 1,
-        "title": "Visual Studio Code",
-        "image": "/images"
-      }
-    ]
-  },
-  {
-    "id": 8,
     "title": "DEPLOYMENT",
     "content": [
       {
@@ -142,6 +131,18 @@
       }
     ]
   },
+  {
+    "id": 8,
+    "title": "DEVELOPMENT TOOLS",
+    "content": [
+      {
+        "id": 1,
+        "title": "Visual Studio Code",
+        "image": "/images"
+      }
+    ]
+  },
+
   {
     "id": 9,
     "title": "DESIGN AND PROTOTYPING",

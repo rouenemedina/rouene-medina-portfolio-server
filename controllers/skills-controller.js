@@ -1,23 +1,57 @@
-import fs from "fs";
+import initKnex from "knex";
+import configuration from "../knexfile.js";
+import "dotenv/config";
 
-const readSkills = () => {
-  const skillsFile = fs.readFileSync("./data/skills.json");
-  const skillsData = JSON.parse(skillsFile);
-  return skillsData;
-};
+const knex = initKnex(configuration);
 
 // GET /skills
-const getSkills = async (req, res) => {
-  const skillsData = readSkills();
+const getSkillsData = async (req, res) => {
+  try {
+    const skillsData = await knex("skills").select();
 
-  const rawData = skillsData.map((skill) => {
-    return {
-      id: skill.id,
-      title: skill.title,
-      content: skill.content,
-    };
-  });
-  res.json(rawData);
+    if (!skillsData) {
+      return res.status(404).json({
+        message: "Data not found.",
+        error: "404",
+      });
+    }
+
+    res.status(200).json({
+      message: "Data retrieved successfully.",
+      data: skillsData,
+    });
+  } catch (err) {
+    console.log("Error fetching data", err);
+    res.status(400).json({
+      message: "Error retrieving data.",
+      error: "400",
+    });
+  }
 };
 
-export { getSkills };
+// GET /skills/content
+const getSkillsContentData = async (req, res) => {
+  try {
+    const skillsContentData = await knex("skillscontent").select();
+
+    if (!skillsContentData) {
+      return res.status(404).json({
+        message: "Data not found.",
+        error: "404",
+      });
+    }
+
+    res.status(200).json({
+      message: "Data retrieved successfully.",
+      data: skillsContentData,
+    });
+  } catch (err) {
+    console.log("Error fetching data", err);
+    res.status(400).json({
+      message: "Error retrieving data.",
+      error: "400",
+    });
+  }
+};
+
+export { getSkillsData, getSkillsContentData };

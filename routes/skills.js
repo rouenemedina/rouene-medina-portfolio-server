@@ -3,6 +3,8 @@ import * as skillsController from "../controllers/skills-controller.js";
 
 const router = express.Router();
 
-router.route("/").get(skillsController.getSkills);
+router.route("/").get(skillsController.getSkillsData);
+
+router.route("/content").get(skillsController.getSkillsContentData);
 
 export default router;
