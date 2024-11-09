@@ -29,11 +29,10 @@ const getProjects = async (req, res) => {
   }
 };
 
-// GET /projects/:id
-const getProjectById = async (req, res) => {
-  const { id } = req.params;
+// GET /projects/list
+const getProjectsList = async (req, res) => {
   try {
-    const projectData = await knex("projects").where({ id: id }).select();
+    const projectData = await knex("projectscontent").select();
     console.log(projectData);
 
     if (!projectData) {
@@ -45,7 +44,7 @@ const getProjectById = async (req, res) => {
     
     res.status(200).json({
       message: "Data retrieved successfully.",
-      data: projectData[0],
+      data: projectData,
     });
   } catch (err) {
     console.log("Error fetching data", err);
@@ -56,4 +55,4 @@ const getProjectById = async (req, res) => {
   }
 };
 
-export { getProjects, getProjectById };
+export { getProjects, getProjectsList };

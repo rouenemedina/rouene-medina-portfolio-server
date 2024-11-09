@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.route("/").get(projectsController.getProjects);
 
-router.route("/:id").get(projectsController.getProjectById);
+router.route("/list").get(projectsController.getProjectsList);
 
 export default router;
