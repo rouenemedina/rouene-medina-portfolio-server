@@ -5,7 +5,7 @@
     "content": [
       {
         "id": 1,
-        "description": " A dynamic web application designed to showcase photographer’s portfolios, emphasizing robust functionality and visual appeal.",
+        "description": "A dynamic web application designed to showcase photographer’s portfolios, emphasizing robust functionality and visual appeal.",
         "image": "/images",
         "demo": "https://youtu.be/sHdhveGVQmI",
         "github": "https://github.com/rouenemedina/rouene-medina-photonest"
