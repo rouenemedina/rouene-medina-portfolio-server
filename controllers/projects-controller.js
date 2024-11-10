@@ -19,8 +19,8 @@ const getProjects = async (req, res) => {
     res.status(200).json({
       message: "Data retrieved successfully.",
       data: projectsData,
-    })
-  } catch(err) {
+    });
+  } catch (err) {
     console.log("Error fetching data", err);
     res.status(400).json({
       message: "Error retrieving data.",
@@ -41,7 +41,7 @@ const getProjectsList = async (req, res) => {
         error: "404",
       });
     }
-    
+
     res.status(200).json({
       message: "Data retrieved successfully.",
       data: projectData,
@@ -55,4 +55,32 @@ const getProjectsList = async (req, res) => {
   }
 };
 
-export { getProjects, getProjectsList };
+// GET /projects/:id
+const getProjectById = async (req, res) => {
+  try {
+    const projectId = req.params.id;
+    const projectByIdData = await knex("projectscontent")
+      .where("id", projectId)
+      .first();
+
+    if (!projectByIdData) {
+      return res.status(404).json({
+        message: "Data not found.",
+        error: "404",
+      });
+    }
+
+    res.status(200).json({
+      message: "Data retrieved successfully.",
+      data: projectByIdData,
+    });
+  } catch (err) {
+    console.log("Error fetching data", err);
+    res.status(400).json({
+      message: "Error retrieving data.",
+      error: "400",
+    });
+  }
+};
+
+export { getProjects, getProjectsList, getProjectById };

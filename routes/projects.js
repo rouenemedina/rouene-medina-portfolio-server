@@ -7,4 +7,6 @@ router.route("/").get(projectsController.getProjects);
 
 router.route("/list").get(projectsController.getProjectsList);
 
+router.route("/:id").get(projectsController.getProjectById);
+
 export default router;
