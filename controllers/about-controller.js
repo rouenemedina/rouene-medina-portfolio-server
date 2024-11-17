@@ -33,7 +33,6 @@ const getAboutData = async (req, res) => {
 const getAboutContentData = async (req, res) => {
   try {
     const aboutContentData = await knex("aboutcontent").select();
-    console.log(aboutContentData);
     if (!aboutContentData) {
       return res.status(404).json({
         message: "Data not found.",
