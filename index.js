@@ -7,6 +7,7 @@ import projectRoutes from "./routes/projects.js";
 import skillsRoutes from "./routes/skills.js";
 import socialsRoutes from "./routes/socials.js";
 import landingRoutes from "./routes/landing.js";
+import homepageRoutes from "./routes/homepage.js";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -24,6 +25,7 @@ app.use("/projects", projectRoutes);
 app.use("/skills", skillsRoutes);
 app.use("/socials", socialsRoutes);
 app.use("/landing", landingRoutes);
+app.use("/homepage", homepageRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
