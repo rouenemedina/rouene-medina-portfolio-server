@@ -1,15 +1,13 @@
 import initKnex from "knex";
-import configuration from "../knexfile.js";
+import configuration from "../../knexfile.js";
 import "dotenv/config";
 
 const knex = initKnex(configuration);
-
-// GET /socials
-const getSocials = async (req, res) => {
+const getHeroData = async (req, res) => {
   try {
-    const socialsData = await knex("socials").select();
+    const heroData = await knex("hero").first();
 
-    if (!socialsData) {
+    if (!heroData) {
       return res.status(404).json({
         message: "Data not found.",
         error: "404",
@@ -18,9 +16,9 @@ const getSocials = async (req, res) => {
 
     res.status(200).json({
       message: "Data retrieved successfully.",
-      data: socialsData,
+      data: heroData,
     });
-  } catch(err) {
+  } catch (err) {
     console.log("Error fetching data", err);
     res.status(400).json({
       message: "Error retrieving data.",
@@ -29,4 +27,4 @@ const getSocials = async (req, res) => {
   }
 };
 
-export { getSocials };
+export { getHeroData };

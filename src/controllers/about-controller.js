@@ -1,5 +1,5 @@
 import initKnex from "knex";
-import configuration from "../knexfile.js";
+import configuration from "../../knexfile.js";
 import "dotenv/config";
 
 const knex = initKnex(configuration);

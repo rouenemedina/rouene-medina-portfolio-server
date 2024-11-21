@@ -1,13 +1,13 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
-import heroRoutes from "./routes/hero.js";
-import aboutRoutes from "./routes/about.js";
-import projectRoutes from "./routes/projects.js";
-import skillsRoutes from "./routes/skills.js";
-import socialsRoutes from "./routes/socials.js";
-import landingRoutes from "./routes/landing.js";
-import homepageRoutes from "./routes/homepage.js";
+import heroRoutes from "./src/routes/hero.js";
+import aboutRoutes from "./src/routes/about.js";
+import projectRoutes from "./src/routes/projects.js";
+import skillsRoutes from "./src/routes/skills.js";
+import socialsRoutes from "./src/routes/socials.js";
+import landingRoutes from "./src/routes/landing.js";
+import homepageRoutes from "./src/routes/homepage.js";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
