@@ -7,37 +7,44 @@
       {
         "id": 1,
         "description": "Hi, my name is Rouene Medina and I am a full-stack software developer.",
-        "image": "/images"
+        "imageurl": "https://res.cloudinary.com/dzqivwyjr/image/upload/v1731043318/about_persona1_dgj3kj.png",
+        "alttext": "About Rouene Medina"
       },
       {
         "id": 2,
         "description": "I’ve always been drawn to creativity and problem-solving, which led me to explore both project management in construction and design and entrepreneurship in the creative sector.",
-        "image": "/images"
+        "imageurl": "https://res.cloudinary.com/dzqivwyjr/image/upload/v1731043318/about_persona2_vqzw79.png",
+        "alttext": "About Rouene Medina"
       },
       {
         "id": 3,
         "description": "However, my real passion emerged when I discovered software engineering, particularly front-end and full-stack development.",
-        "image": "/images"
+        "imageurl": "https://res.cloudinary.com/dzqivwyjr/image/upload/v1731043096/about_codes_lb5712.png",
+        "alttext": "About Rouene Medina"
       },
       {
         "id": 4,
         "description": "Transitioning to tech allowed me to combine my love for design with my growing technical knowledge in coding, giving me the chance to create visually appealing, user-friendly digital experiences that are not only functional but impactful.",
-        "image": "/images"
+        "imageurl": "https://res.cloudinary.com/dzqivwyjr/image/upload/v1731043097/about_ui_gj1kpk.png",
+        "alttext": "About Rouene Medina"
       },
       {
         "id": 5,
         "description": "Additionally, I am excited to continue my journey as a developer. After completing my diploma in an intensive software engineering bootcamp, I gained hands-on experience with various technologies like HTML, CSS, JavaScript, TypeScript, and React.",
-        "image": "/images"
+        "imageurl": "https://res.cloudinary.com/dzqivwyjr/image/upload/v1731043097/about_diploma_gznqwq.png",
+        "alttext": "About Rouene Medina"
       },
       {
         "id": 6,
         "description": "I learned how to build responsive, dynamic websites. I also worked with MySQL and PostgreSQL databases, and utilized REST APIs and Web APIs to create seamless integrations. Tools like GitHub, Postman, Thunder Client, and Visual Studio Code have been essential in my development process, while Figma and Adobe Creative Suite support my design work.",
-        "image": "/images"
+        "imageurl": "https://res.cloudinary.com/dzqivwyjr/image/upload/v1731043098/about_media_umdhdf.png",
+        "alttext": "About Rouene Medina"
       },
       {
         "id": 7,
         "description": "Now, I’m focused on using my diverse background to craft seamless digital experiences, blending creativity and technology to bring ideas to life through code, ensuring that every element not only looks good but also functions seamlessly.",
-        "image": "/images"
+        "imageurl": "https://res.cloudinary.com/dzqivwyjr/image/upload/v1731043097/about_persona3_yoawzu.png",
+        "alttext": "About Rouene Medina"
       }
     ]
   }

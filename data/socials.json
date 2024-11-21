@@ -3,18 +3,21 @@
     "id": 1,
     "name": "Email",
     "url": "mailto:rouenemedina@gmail",
-    "image": "/images"
+    "imageurl": "https://res.cloudinary.com/dzqivwyjr/image/upload/v1731056806/socials_mail_x7tky9.jpg",
+    "alttext": "Rouene Medina's Email Address"
   },
   {
     "id": 2,
     "name": "Linkedin",
     "url": "https://www.linkedin.com/in/rouenemedina/",
-    "image": "/images"
+    "imageurl": "https://res.cloudinary.com/dzqivwyjr/image/upload/v1731056805/socials_linkedin_wylsrp.png",
+    "alttext": "Rouene Medina's Linkedin Profile"
   },
   {
     "id": 3,
     "name": "Github",
     "url": "https://github.com/rouenemedina",
-    "image": "/images"
+    "imageurl": "https://res.cloudinary.com/dzqivwyjr/image/upload/v1731056805/socials_github_sfuqfz.jpg",
+    "alttext": "Rouene Medina's Github Profile"
   }
 ]

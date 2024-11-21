@@ -4,6 +4,7 @@
     "name": "ROUENE MEDINA",
     "position": "Full Stack Software Developer",
     "location": "based in Toronto, Ontario",
-    "image": "/images"
+    "imageurl": "https://res.cloudinary.com/dzqivwyjr/image/upload/v1730360859/hero_rdv0mt.jpg",
+    "alttext": "Rouene Medina Profile Picture"
   }
 ]
