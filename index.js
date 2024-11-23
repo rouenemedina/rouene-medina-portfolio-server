@@ -14,7 +14,7 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 
 //Connect to the SQLite database
-const db = new sqlite3.Database("./src/database/portfolio__rm.db", (err) => {
+const db = new sqlite3.Database("./src/data/portfolio__rm.db", (err) => {
   if (err) {
     console.log("Error connecting to the database", err);
   } else {
