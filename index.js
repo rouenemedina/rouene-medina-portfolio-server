@@ -22,11 +22,15 @@ const db = new sqlite3.Database("./src/database/portfolio__rm.db", (err) => {
   }
 });
 
-app.use(cors());
+const corsOptions = {
+  origin: "https://rouenemedina.netlify.app/",
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 //static images
-app.use("/images", express.static("./images"));
+// app.use("/images", express.static("./images"));
 
 //routes
 app.use("/hero", heroRoutes);
