@@ -80,6 +80,12 @@
         "title": "PostgreSQL",
         "imageurl": "https://res.cloudinary.com/dzqivwyjr/image/upload/v1731188933/postgresql-original_iu18zq.svg",
         "alttext": "PostgreSQL"
+      },
+      {
+        "id": 3,
+        "title": "SQLite",
+        "imageurl": "https://res.cloudinary.com/dzqivwyjr/image/upload/v1732300682/sqlite-original_nyegqp.svg",
+        "alttext": "SQLite"
       }
     ]
   },
@@ -156,7 +162,7 @@
       {
         "id": 2,
         "title": "Render",
-        "imageurl": "",
+        "imageurl": "https://res.cloudinary.com/dzqivwyjr/image/upload/v1732312395/render_rivds0.png",
         "alttext": "Render"
       }
     ]
