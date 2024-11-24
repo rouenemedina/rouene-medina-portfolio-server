@@ -5,7 +5,7 @@ import { __filename } from "../lib/utils/pathUtils.js";
 
 const readProjectsFile = () => {
   try {
-    const filePath = path.join(__dirname, "../data/projects.json");
+    const filePath = path.join(__dirname, "../../data/projects.json");
     
     if (!fs.existsSync(filePath)) {
       throw new Error("File not found at " + filePath);

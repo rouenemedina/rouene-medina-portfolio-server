@@ -5,7 +5,7 @@ import { __filename } from "../lib/utils/pathUtils.js";
 
 const readLandingFile = () => {
   try {
-    const filePath = path.join(__dirname, "../data/landing.json");
+    const filePath = path.join(__dirname, "../../data/landing.json");
     console.log("filePath:", filePath);
 
     if (!fs.existsSync(filePath)) {
