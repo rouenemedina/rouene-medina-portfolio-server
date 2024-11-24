@@ -10,20 +10,22 @@ import socialsRoutes from "./src/routes/socials.js";
 import landingRoutes from "./src/routes/landing.js";
 import homepageRoutes from "./src/routes/homepage.js";
 import { getDirectoryTree } from "./src/controllers/landing-controller.js";
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
 
 const corsOptions = {
-  origin: "https://rouenemedina.netlify.app/",
+  origin: "https://rouenemedina.netlify.app",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 const __filename = fileURLToPath(import.meta.url); // Get the full path of the current module
 const __dirname = dirname(__filename); // Get the directory path
 
-console.log('Current directory:', __dirname);
+console.log("Current directory:", __dirname);
 
 const rootDirectory = path.join(__dirname, "./");
 
@@ -44,7 +46,7 @@ app.listen(PORT, () => {
 
   try {
     const directoryTree = getDirectoryTree(rootDirectory);
-    console.log("Directory tree:", (directoryTree));
+    console.log("Directory tree:", directoryTree);
   } catch (err) {
     console.log("Error fetching directory tree", err);
   }
