@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
-import { __dirname } from "../lib/utils/pathUtils";
-import { __filename } from "../lib/utils/pathUtils";
+import { __dirname } from "../lib/utils/pathUtils.js";
+import { __filename } from "../lib/utils/pathUtil.js";
 
 const readHomepageFile = () => {
   try {
