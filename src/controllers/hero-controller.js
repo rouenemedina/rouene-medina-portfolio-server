@@ -1,13 +1,15 @@
-import initKnex from "knex";
-import configuration from "../../knexfile.js";
-import "dotenv/config";
+import fs from "fs";
 
-const knex = initKnex(configuration);
+const readHeroFile = () => {
+  const heroData = fs.readFileSync("src/database/hero.json");
+  const parsedData = JSON.parse(heroData);
+  return parsedData;
+};
 const getHeroData = async (req, res) => {
   try {
-    const heroData = await knex("hero").first();
+    const hero = readHeroFile();
 
-    if (!heroData) {
+    if (!hero) {
       return res.status(404).json({
         message: "Data not found.",
         error: "404",
@@ -16,7 +18,7 @@ const getHeroData = async (req, res) => {
 
     res.status(200).json({
       message: "Data retrieved successfully.",
-      data: heroData,
+      data: hero,
     });
   } catch (err) {
     console.log("Error fetching data", err);

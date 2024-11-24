@@ -1,13 +1,15 @@
-import initKnex from "knex";
-import configuration from "../../knexfile.js";
-import "dotenv/config";
+import fs from "fs";
 
-const knex = initKnex(configuration);
+const readSocialsFile = () => {
+  const socialsData = fs.readFileSync("src/database/socials.json");
+  const parsedData = JSON.parse(socialsData);
+  return parsedData;
+}
 
 // GET /socials
 const getSocials = async (req, res) => {
   try {
-    const socialsData = await knex("socials").select();
+    const socialsData = readSocialsFile();
 
     if (!socialsData) {
       return res.status(404).json({

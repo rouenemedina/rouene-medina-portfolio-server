@@ -1,12 +1,13 @@
-import initKnex from "knex";
-import configuration from "../../knexfile.js";
-import "dotenv/config";
+import fs from "fs";
 
-const knex = initKnex(configuration);
-
+const readLandingFile = () => {
+  const landingData = fs.readFileSync("src/database/landing.json");
+  const parsedData = JSON.parse(landingData);
+  return parsedData;
+}
 const getLandingData = async (req, res) => {
   try {
-    const landingData = await knex("landing").first();
+    const landingData = readLandingFile();
 
     if (!landingData) {
       return res.status(404).json({

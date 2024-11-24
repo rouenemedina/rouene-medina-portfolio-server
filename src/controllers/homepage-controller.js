@@ -1,14 +1,16 @@
-import initKnex from "knex";
-import configuration from "../../knexfile.js";
-import "dotenv/config";
+import fs from "fs";
 
-const knex = initKnex(configuration);
+const readHomepageFile = () => {
+  const homepageData = fs.readFileSync("src/database/homepage.json");
+  const parsedData = JSON.parse(homepageData);
+  return parsedData;
+};
 
 const getHomepageData = async (req, res) => {
   try {
-    const homepageData = await knex("homepage").first();
+    const homepage = readHomepageFile();
 
-    if (!homepageData) {
+    if (!homepage) {
       return res.status(404).json({
         message: "Data not found.",
         error: "404",
@@ -17,7 +19,7 @@ const getHomepageData = async (req, res) => {
 
     res.status(200).json({
       message: "Data retrieved successfully.",
-      data: homepageData,
+      data: homepage,
     });
   } catch (err) {
     console.log("Error fetching data", err);

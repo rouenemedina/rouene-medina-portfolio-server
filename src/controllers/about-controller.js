@@ -1,15 +1,24 @@
-import initKnex from "knex";
-import configuration from "../../knexfile.js";
-import "dotenv/config";
+import fs from "fs";
 
-const knex = initKnex(configuration);
+// Function to read JSON files
+const readAboutFile = () => {
+  const aboutData = fs.readFileSync("src/database/about.json");
+  const parsedData = JSON.parse(aboutData);
+  return parsedData;
+};
+
+const readAboutContentFile = () => {
+  const aboutContentData = fs.readFileSync("src/database/aboutcontent.json");
+  const parsedData = JSON.parse(aboutContentData);
+  return parsedData;
+};
 
 // GET /about
 const getAboutData = async (req, res) => {
   try {
-    const aboutData = await knex("about").select();
+    const about = readAboutFile();
 
-    if (!aboutData) {
+    if (!about) {
       return res.status(404).json({
         message: "Data not found.",
         error: "404",
@@ -18,7 +27,7 @@ const getAboutData = async (req, res) => {
 
     res.status(200).json({
       message: "Data retrieved successfully.",
-      data: aboutData[0],
+      data: about,
     });
   } catch (err) {
     console.log("Error fetching data", err);
@@ -32,8 +41,9 @@ const getAboutData = async (req, res) => {
 // GET /aboutcontent
 const getAboutContentData = async (req, res) => {
   try {
-    const aboutContentData = await knex("aboutcontent").select();
-    if (!aboutContentData) {
+    const aboutContent = readAboutContentFile();
+
+    if (!aboutContent) {
       return res.status(404).json({
         message: "Data not found.",
         error: "404",
@@ -42,7 +52,7 @@ const getAboutContentData = async (req, res) => {
 
     res.status(200).json({
       message: "Data retrieved successfully.",
-      data: aboutContentData,
+      data: aboutContent,
     });
   } catch (err) {
     console.log("Error fetching data", err);

@@ -1,13 +1,21 @@
-import initKnex from "knex";
-import configuration from "../../knexfile.js";
-import "dotenv/config";
+import fs from "fs";
 
-const knex = initKnex(configuration);
+const readProjectsFile = () => {
+  const projectsData = fs.readFileSync("src/database/projects.json");
+  const parsedData = JSON.parse(projectsData);
+  return parsedData;
+}
+
+const readProjectsContentFile = () => {
+  const projectsContentData = fs.readFileSync("src/database/projectscontent.json");
+  const parsedData = JSON.parse(projectsContentData);
+  return parsedData;
+}
 
 // GET /projects
 const getProjects = async (req, res) => {
   try {
-    const projectsData = await knex("projects").select();
+    const projectsData = readProjectsFile();
 
     if (!projectsData) {
       return res.status(404).json({
@@ -32,8 +40,7 @@ const getProjects = async (req, res) => {
 // GET /projects/list
 const getProjectsList = async (req, res) => {
   try {
-    const projectData = await knex("projectscontent").select();
-    console.log(projectData);
+    const projectData = readProjectsContentFile();
 
     if (!projectData) {
       return res.status(404).json({
@@ -58,22 +65,23 @@ const getProjectsList = async (req, res) => {
 // GET /projects/:id
 const getProjectById = async (req, res) => {
   try {
-    const projectId = req.params.id;
-    const projectByIdData = await knex("projectscontent")
-      .where("id", projectId)
-      .first();
+    const projectByIdData = readProjectsContentFile();
 
-    if (!projectByIdData) {
-      return res.status(404).json({
+
+    const projectId = req.params.id;
+    const project = projectByIdData.find((project) => project.id === projectId);
+
+    if (project) {
+      res.status(200).json({
+        message: "Data retrieved successfully.",
+        data: project,
+      });
+    } else {
+      res.status(404).json({
         message: "Data not found.",
         error: "404",
       });
     }
-
-    res.status(200).json({
-      message: "Data retrieved successfully.",
-      data: projectByIdData,
-    });
   } catch (err) {
     console.log("Error fetching data", err);
     res.status(400).json({

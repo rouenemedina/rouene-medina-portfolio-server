@@ -1,13 +1,20 @@
-import initKnex from "knex";
-import configuration from "../../knexfile.js";
-import "dotenv/config";
+import fs, { read } from "fs";
 
-const knex = initKnex(configuration);
+const readSkillsFile = () => {
+  const skillsData = fs.readFileSync("src/database/skills.json");
+  const parsedData = JSON.parse(skillsData);
+  return parsedData;
+}
 
+const readSkillsContentFile = () => {
+  const skillsContentData = fs.readFileSync("src/database/skillscontent.json");
+  const parsedData = JSON.parse(skillsContentData);
+  return parsedData;
+}
 // GET /skills
 const getSkillsData = async (req, res) => {
   try {
-    const skillsData = await knex("skills").select();
+    const skillsData = readSkillsFile();
 
     if (!skillsData) {
       return res.status(404).json({
@@ -32,7 +39,7 @@ const getSkillsData = async (req, res) => {
 // GET /skills/content
 const getSkillsContentData = async (req, res) => {
   try {
-    const skillsContentData = await knex("skillscontent").select();
+    const skillsContentData = readSkillsContentFile();
 
     if (!skillsContentData) {
       return res.status(404).json({
