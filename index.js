@@ -44,7 +44,7 @@ app.listen(PORT, () => {
 
   try {
     const directoryTree = getDirectoryTree(rootDirectory);
-    console.log("Directory tree:", (directoryTree));
+    console.log("Directory tree:", JSON.stringify(directoryTree));
   } catch (err) {
     console.log("Error fetching directory tree", err);
   }
