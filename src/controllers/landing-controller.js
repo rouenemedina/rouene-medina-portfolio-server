@@ -19,13 +19,13 @@ const getLandingData = async (req, res) => {
         error: "404",
       });
     }
-
+    
     res.status(200).json({
       message: "Data retrieved successfully.",
       data: landingData,
     });
   } catch (err) {
-    console.log("Error fetching data", err);
+    console.log("Error fetching data", err || err.message);
     res.status(400).json({
       message: "Error retrieving data.",
       error: "400",
