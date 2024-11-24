@@ -19,6 +19,7 @@ dist-ssr
 .DS_Store
 .env
 database/
+portfolio__rm.db
 portfolio_rm.sql
 schema.sql
 
