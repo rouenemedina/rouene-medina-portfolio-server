@@ -3,7 +3,7 @@ import path from "path";
 
 const readSocialsFile = () => {
   const filePath = path.join(__dirname, "../database/socials.json");
-  const socialsData = fs.readFileSync(filePath);
+  const socialsData = fs.readFileSync(filePath, "utf-8");
   const parsedData = JSON.parse(socialsData);
   return parsedData;
 }

@@ -3,7 +3,7 @@ import path from "path";
 
 const readHomepageFile = () => {
   const filePath = path.join(__dirname, "../data/homepage.json");
-  const homepageData = fs.readFileSync(filePath);
+  const homepageData = fs.readFileSync(filePath, "utf-8");
   const parsedData = JSON.parse(homepageData);
   return parsedData;
 };

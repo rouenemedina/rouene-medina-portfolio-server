@@ -4,7 +4,8 @@ import { dirname } from "path";
 
 const readLandingFile = () => {
   const filePath = path.join(__dirname, "../data/landing.json");
-  const landingData = fs.readFileSync(filePath);
+  console.log("File Path:", filePath);
+  const landingData = fs.readFileSync(filePath, "utf-8");
   const parsedData = JSON.parse(landingData);
   console.log(parsedData);
   return parsedData;

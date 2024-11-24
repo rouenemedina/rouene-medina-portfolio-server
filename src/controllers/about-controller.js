@@ -4,7 +4,7 @@ import path from "path";
 // Function to read JSON files
 const readAboutFile = () => {
   const filePath = path.join(__dirname, "../data/about.json");
-  const aboutData = fs.readFileSync(filePath);
+  const aboutData = fs.readFileSync(filePath, "utf-8");
   const parsedData = JSON.parse(aboutData);
   return parsedData;
 };
