@@ -1,11 +1,23 @@
 import fs from "fs";
 import path from "path";
+import { __dirname } from "../lib/utils/pathUtils.js";
+import { __filename } from "../lib/utils/pathUtils.js";
 
 const readProjectsFile = () => {
-  const filePath = path.join(__dirname, "../data/projects.json");
-  const projectsData = fs.readFileSync(filePath, "utf-8");
-  const parsedData = JSON.parse(projectsData);
-  return parsedData;
+  try {
+    const filePath = path.join(__dirname, "../data/projects.json");
+    
+    if (!fs.existsSync(filePath)) {
+      throw new Error("File not found at " + filePath);
+    }
+
+    const projectsData = fs.readFileSync(filePath);
+    const parsedData = JSON.parse(projectsData);
+    return parsedData;
+  } catch (err) {
+    console.log("Error reading data", err);
+    return null;
+  }
 };
 
 // GET /projects
@@ -26,9 +38,9 @@ const getProjects = async (req, res) => {
     });
   } catch (err) {
     console.log("Error fetching data", err);
-    res.status(400).json({
+    res.status(500).json({
       message: "Error retrieving data.",
-      error: "400",
+      error: "500",
     });
   }
 };
@@ -50,9 +62,9 @@ const getProjectsList = async (req, res) => {
     })
   } catch (err) {
     console.log("Error fetching data", err);
-    res.status(400).json({
+    res.status(500).json({
       message: "Error retrieving data.",
-      error: "400",
+      error: "500",
     });
   }
 };
@@ -76,9 +88,9 @@ const getProjectById = async (req, res) => {
     })
   } catch (err) {
     console.log("Error fetching data", err);
-    res.status(400).json({
+    res.status(500).json({
       message: "Error retrieving data.",
-      error: "400",
+      error: "500",
     });
   }
 };

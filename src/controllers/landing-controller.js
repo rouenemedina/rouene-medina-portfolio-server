@@ -1,15 +1,26 @@
 import fs from "fs";
 import path from "path";
-import { dirname } from "path";
+import { __dirname } from "../lib/utils/pathUtils";
+import { __filename } from "../lib/utils/pathUtils";
 
 const readLandingFile = () => {
-  const filePath = path.join(__dirname, "../data/landing.json");
-  console.log("File Path:", filePath);
-  const landingData = fs.readFileSync(filePath, "utf-8");
-  const parsedData = JSON.parse(landingData);
-  console.log(parsedData);
-  return parsedData;
-}
+  try {
+    const filePath = path.join(__dirname, "../data/landing.json");
+    console.log("filePath:", filePath);
+
+    if (!fs.existsSync(filePath)) {
+      throw new Error("File not found at " + filePath);
+    }
+
+    const landingData = fs.readFileSync(filePath);
+    const parsedData = JSON.parse(landingData);
+    console.log(parsedData);
+    return parsedData;
+  } catch (err) {
+    console.log("Error reading data", err);
+    return null;
+  }
+};
 const getLandingData = async (req, res) => {
   try {
     const landingData = readLandingFile();
@@ -26,10 +37,10 @@ const getLandingData = async (req, res) => {
       data: landingData,
     });
   } catch (err) {
-    console.log("Error fetching data", err);
-    res.status(400).json({
+    console.log("Error fetching data", err.message);
+    res.status(500).json({
       message: "Error retrieving data.",
-      error: "400",
+      error: "500",
     });
   }
 };

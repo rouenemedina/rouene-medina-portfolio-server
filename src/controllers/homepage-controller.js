@@ -1,11 +1,23 @@
 import fs from "fs";
 import path from "path";
+import { __dirname } from "../lib/utils/pathUtils";
+import { __filename } from "../lib/utils/pathUtils";
 
 const readHomepageFile = () => {
-  const filePath = path.join(__dirname, "../data/homepage.json");
-  const homepageData = fs.readFileSync(filePath, "utf-8");
-  const parsedData = JSON.parse(homepageData);
-  return parsedData;
+  try {
+    const filePath = path.join(__dirname, "../data/homepage.json");
+    
+    if (!fs.existsSync(filePath)) {
+      throw new Error("File not found at " + filePath);
+    }
+
+    const homepageData = fs.readFileSync(filePath);
+    const parsedData = JSON.parse(homepageData);
+    return parsedData;
+  } catch (err) {
+    console.log("Error reading data", err);
+    return null;
+  }
 };
 
 const getHomepageData = async (req, res) => {
@@ -25,9 +37,9 @@ const getHomepageData = async (req, res) => {
     });
   } catch (err) {
     console.log("Error fetching data", err);
-    res.status(400).json({
+    res.status(500).json({
       message: "Error retrieving data.",
-      error: "400",
+      error: "500",
     });
   }
 };
