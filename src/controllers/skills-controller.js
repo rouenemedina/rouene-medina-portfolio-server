@@ -6,11 +6,6 @@ const readSkillsFile = () => {
   return parsedData;
 }
 
-const readSkillsContentFile = () => {
-  const skillsContentData = fs.readFileSync("src/database/skillscontent.json");
-  const parsedData = JSON.parse(skillsContentData);
-  return parsedData;
-}
 // GET /skills
 const getSkillsData = async (req, res) => {
   try {
@@ -39,9 +34,17 @@ const getSkillsData = async (req, res) => {
 // GET /skills/content
 const getSkillsContentData = async (req, res) => {
   try {
-    const skillsContentData = readSkillsContentFile();
+    const skillsData = readSkillsFile();
+    const skillsContent = skillsData.map((skill) => {
+      return {
+        id: skill.id,
+        title: skill.title,
+        imageurl: skill.imageurl,
+        alttext: skill.alttext
+      };
+    })
 
-    if (!skillsContentData) {
+    if (!skillsContent) {
       return res.status(404).json({
         message: "Data not found.",
         error: "404",
@@ -50,8 +53,9 @@ const getSkillsContentData = async (req, res) => {
 
     res.status(200).json({
       message: "Data retrieved successfully.",
-      data: skillsContentData,
-    });
+      data: skillsContent
+    })
+
   } catch (err) {
     console.log("Error fetching data", err);
     res.status(400).json({

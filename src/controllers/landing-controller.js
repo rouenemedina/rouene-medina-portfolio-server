@@ -1,7 +1,7 @@
 import fs from "fs";
 
 const readLandingFile = () => {
-  const landingData = fs.readFileSync("src/database/landing.json");
+  const landingData = fs.readFileSync("../data/landing.json");
   const parsedData = JSON.parse(landingData);
   return parsedData;
 }

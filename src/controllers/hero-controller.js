@@ -1,7 +1,7 @@
 import fs from "fs";
 
 const readHeroFile = () => {
-  const heroData = fs.readFileSync("src/database/hero.json");
+  const heroData = fs.readFileSync("../data/hero.json");
   const parsedData = JSON.parse(heroData);
   return parsedData;
 };

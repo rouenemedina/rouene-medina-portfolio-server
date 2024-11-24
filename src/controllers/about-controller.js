@@ -2,14 +2,8 @@ import fs from "fs";
 
 // Function to read JSON files
 const readAboutFile = () => {
-  const aboutData = fs.readFileSync("src/database/about.json");
+  const aboutData = fs.readFileSync("../data/about.json");
   const parsedData = JSON.parse(aboutData);
-  return parsedData;
-};
-
-const readAboutContentFile = () => {
-  const aboutContentData = fs.readFileSync("src/database/aboutcontent.json");
-  const parsedData = JSON.parse(aboutContentData);
   return parsedData;
 };
 
@@ -41,7 +35,16 @@ const getAboutData = async (req, res) => {
 // GET /aboutcontent
 const getAboutContentData = async (req, res) => {
   try {
-    const aboutContent = readAboutContentFile();
+    const about = readAboutFile();
+    const aboutContent = about.map((aboutContent) => {
+      return {
+        id: aboutContent.id,
+        description: aboutContent.description,
+        imageurl: aboutContent.imageurl,
+        alttext: aboutContent.alttext
+      };
+    })
+
 
     if (!aboutContent) {
       return res.status(404).json({

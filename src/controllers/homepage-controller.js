@@ -1,7 +1,7 @@
 import fs from "fs";
 
 const readHomepageFile = () => {
-  const homepageData = fs.readFileSync("src/database/homepage.json");
+  const homepageData = fs.readFileSync("../data/homepage.json");
   const parsedData = JSON.parse(homepageData);
   return parsedData;
 };
