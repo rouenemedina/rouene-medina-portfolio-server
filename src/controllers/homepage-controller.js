@@ -1,7 +1,9 @@
 import fs from "fs";
+import path from "path";
 
 const readHomepageFile = () => {
-  const homepageData = fs.readFileSync("../data/homepage.json");
+  const filePath = path.join(__dirname, "../data/homepage.json");
+  const homepageData = fs.readFileSync(filePath);
   const parsedData = JSON.parse(homepageData);
   return parsedData;
 };

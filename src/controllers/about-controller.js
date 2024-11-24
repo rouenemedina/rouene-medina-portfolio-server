@@ -1,8 +1,10 @@
 import fs from "fs";
+import path from "path";
 
 // Function to read JSON files
 const readAboutFile = () => {
-  const aboutData = fs.readFileSync("../data/about.json");
+  const filePath = path.join(__dirname, "../data/about.json");
+  const aboutData = fs.readFileSync(filePath);
   const parsedData = JSON.parse(aboutData);
   return parsedData;
 };

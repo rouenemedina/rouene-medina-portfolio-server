@@ -1,7 +1,9 @@
 import fs from "fs";
+import path from "path";
 
 const readSocialsFile = () => {
-  const socialsData = fs.readFileSync("src/database/socials.json");
+  const filePath = path.join(__dirname, "../database/socials.json");
+  const socialsData = fs.readFileSync(filePath);
   const parsedData = JSON.parse(socialsData);
   return parsedData;
 }

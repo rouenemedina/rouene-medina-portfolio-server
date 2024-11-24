@@ -1,7 +1,10 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
+import fs from "fs";
 import path from "path";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 import heroRoutes from "./src/routes/hero.js";
 import aboutRoutes from "./src/routes/about.js";
 import projectRoutes from "./src/routes/projects.js";
@@ -9,9 +12,6 @@ import skillsRoutes from "./src/routes/skills.js";
 import socialsRoutes from "./src/routes/socials.js";
 import landingRoutes from "./src/routes/landing.js";
 import homepageRoutes from "./src/routes/homepage.js";
-import { getDirectoryTree } from "./src/controllers/landing-controller.js";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -25,7 +25,24 @@ const corsOptions = {
 const __filename = fileURLToPath(import.meta.url); // Get the full path of the current module
 const __dirname = dirname(__filename); // Get the directory path
 
-console.log("Current directory:", __dirname);
+const getDirectoryTree = (dir) => {
+  const files = fs.readdirSync(dir, { withFileTypes: true });
+  return files.map((file) => {
+    const fullPath = path.join(dir, file.name);
+    if (file.isDirectory()) {
+      return {
+        name: file.name,
+        type: "directory",
+        children: getDirectoryTree(fullPath),
+      };
+    } else {
+      return {
+        name: file.name,
+        type: "file",
+      };
+    }
+  });
+}
 
 const rootDirectory = path.join(__dirname, "./");
 

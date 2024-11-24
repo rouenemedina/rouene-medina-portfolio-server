@@ -1,7 +1,9 @@
 import fs, { read } from "fs";
+import path from "path";
 
 const readSkillsFile = () => {
-  const skillsData = fs.readFileSync("src/database/skills.json");
+  const filesPath = path.join(__dirname, "../database/skills.json");
+  const skillsData = fs.readFileSync(filesPath);
   const parsedData = JSON.parse(skillsData);
   return parsedData;
 }

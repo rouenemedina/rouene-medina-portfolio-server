@@ -1,7 +1,9 @@
 import fs from "fs";
+import path from "path";
 
 const readHeroFile = () => {
-  const heroData = fs.readFileSync("../data/hero.json");
+  const filePath = path.join(__dirname, "../data/hero.json");
+  const heroData = fs.readFileSync(filePath);
   const parsedData = JSON.parse(heroData);
   return parsedData;
 };

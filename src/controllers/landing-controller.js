@@ -1,27 +1,10 @@
 import fs from "fs";
 import path from "path";
-
-const getDirectoryTree = (dir) => {
-  const files = fs.readdirSync(dir, { withFileTypes: true });
-  return files.map((file) => {
-    const fullPath = path.join(dir, file.name);
-    if (file.isDirectory()) {
-      return {
-        name: file.name,
-        type: "directory",
-        children: getDirectoryTree(fullPath),
-      };
-    } else {
-      return {
-        name: file.name,
-        type: "file",
-      };
-    }
-  });
-}
+import { dirname } from "path";
 
 const readLandingFile = () => {
-  const landingData = fs.readFileSync("../data/landing.json");
+  const filePath = path.join(__dirname, "../data/landing.json");
+  const landingData = fs.readFileSync(filePath);
   const parsedData = JSON.parse(landingData);
   console.log(parsedData);
   return parsedData;
@@ -50,4 +33,4 @@ const getLandingData = async (req, res) => {
   }
 };
 
-export { getLandingData, getDirectoryTree };
+export { getLandingData };

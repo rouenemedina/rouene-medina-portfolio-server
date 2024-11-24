@@ -1,7 +1,9 @@
 import fs from "fs";
+import path from "path";
 
 const readProjectsFile = () => {
-  const projectsData = fs.readFileSync("../data/projects.json");
+  const filePath = path.join(__dirname, "../data/projects.json");
+  const projectsData = fs.readFileSync(filePath);
   const parsedData = JSON.parse(projectsData);
   return parsedData;
 };
