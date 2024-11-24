@@ -1,11 +1,23 @@
 import fs from "fs";
 import path from "path";
+import { __dirname } from "../lib/utils/pathUtils";
+import { __filename } from "../lib/utils/pathUtils";
 
 const readHeroFile = () => {
-  const filePath = path.join(__dirname, "../data/hero.json");
-  const heroData = fs.readFileSync(filePath);
-  const parsedData = JSON.parse(heroData);
-  return parsedData;
+  try {
+    const filePath = path.join(__dirname, "../data/hero.json");
+
+    if (!fs.existsSync(filePath)) {
+      throw new Error("File not found at " + filePath);
+    }
+
+    const heroData = fs.readFileSync(filePath);
+    const parsedData = JSON.parse(heroData);
+    return parsedData;
+  } catch (err) {
+    console.log("Error reading data", err);
+    return null;
+  }
 };
 const getHeroData = async (req, res) => {
   try {
@@ -24,9 +36,9 @@ const getHeroData = async (req, res) => {
     });
   } catch (err) {
     console.log("Error fetching data", err);
-    res.status(400).json({
+    res.status(500).json({
       message: "Error retrieving data.",
-      error: "400",
+      error: "500",
     });
   }
 };

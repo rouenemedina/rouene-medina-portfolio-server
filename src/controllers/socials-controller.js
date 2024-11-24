@@ -1,12 +1,24 @@
 import fs from "fs";
 import path from "path";
+import { __dirname } from "../lib/utils/pathUtils.js";
+import { __filename } from "../lib/utils/pathUtils.js";
 
 const readSocialsFile = () => {
-  const filePath = path.join(__dirname, "../database/socials.json");
-  const socialsData = fs.readFileSync(filePath);
-  const parsedData = JSON.parse(socialsData);
-  return parsedData;
-}
+  try {
+    const filePath = path.join(__dirname, "../database/socials.json");
+    
+    if (!fs.existsSync(filePath)) {
+      throw new Error("File not found at " + filePath);
+    }
+
+    const socialsData = fs.readFileSync(filePath);
+    const parsedData = JSON.parse(socialsData);
+    return parsedData;
+  } catch (err) {
+    console.log("Error reading data", err);
+    return null;
+  }
+};
 
 // GET /socials
 const getSocials = async (req, res) => {
@@ -24,11 +36,11 @@ const getSocials = async (req, res) => {
       message: "Data retrieved successfully.",
       data: socialsData,
     });
-  } catch(err) {
+  } catch (err) {
     console.log("Error fetching data", err);
-    res.status(400).json({
+    res.status(500).json({
       message: "Error retrieving data.",
-      error: "400",
+      error: "500",
     });
   }
 };

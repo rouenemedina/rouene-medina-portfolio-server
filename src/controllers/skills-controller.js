@@ -1,11 +1,23 @@
 import fs, { read } from "fs";
 import path from "path";
+import { __dirname } from "../lib/utils/pathUtils.js";
+import { __filename } from "../lib/utils/pathUtils.js";
 
 const readSkillsFile = () => {
-  const filesPath = path.join(__dirname, "../database/skills.json");
-  const skillsData = fs.readFileSync(filesPath);
-  const parsedData = JSON.parse(skillsData);
-  return parsedData;
+  try {
+    const filesPath = path.join(__dirname, "../database/skills.json");
+    
+    if(!fs.existsSync(filesPath)) {
+      throw new Error("File not found at " + filesPath);
+    }
+
+    const skillsData = fs.readFileSync(filesPath);
+    const parsedData = JSON.parse(skillsData);
+    return parsedData;
+  } catch (err) {
+    console.log("Error reading data", err);
+    return null;
+  }
 }
 
 // GET /skills
@@ -26,9 +38,9 @@ const getSkillsData = async (req, res) => {
     });
   } catch (err) {
     console.log("Error fetching data", err);
-    res.status(400).json({
+    res.status(500).json({
       message: "Error retrieving data.",
-      error: "400",
+      error: "500",
     });
   }
 };
@@ -60,9 +72,9 @@ const getSkillsContentData = async (req, res) => {
 
   } catch (err) {
     console.log("Error fetching data", err);
-    res.status(400).json({
+    res.status(500).json({
       message: "Error retrieving data.",
-      error: "400",
+      error: "500",
     });
   }
 };

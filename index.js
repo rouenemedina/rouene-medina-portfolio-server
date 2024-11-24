@@ -3,8 +3,8 @@ import cors from "cors";
 import "dotenv/config";
 import fs from "fs";
 import path from "path";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
+import { __filename } from "./src/lib/utils/pathUtils.js";
+import { __dirname } from "./src/lib/utils/pathUtils.js";
 import heroRoutes from "./src/routes/hero.js";
 import aboutRoutes from "./src/routes/about.js";
 import projectRoutes from "./src/routes/projects.js";
@@ -22,8 +22,17 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-const __filename = fileURLToPath(import.meta.url); // Get the full path of the current module
-const __dirname = dirname(__filename); // Get the directory path
+app.use(cors(corsOptions));
+app.use(express.json());
+
+//routes
+app.use("/hero", heroRoutes);
+app.use("/about", aboutRoutes);
+app.use("/projects", projectRoutes);
+app.use("/skills", skillsRoutes);
+app.use("/socials", socialsRoutes);
+app.use("/landing", landingRoutes);
+app.use("/homepage", homepageRoutes);
 
 const getDirectoryTree = (dir) => {
   const files = fs.readdirSync(dir, { withFileTypes: true });
@@ -45,18 +54,6 @@ const getDirectoryTree = (dir) => {
 }
 
 const rootDirectory = path.join(__dirname, "./");
-
-app.use(cors(corsOptions));
-app.use(express.json());
-
-//routes
-app.use("/hero", heroRoutes);
-app.use("/about", aboutRoutes);
-app.use("/projects", projectRoutes);
-app.use("/skills", skillsRoutes);
-app.use("/socials", socialsRoutes);
-app.use("/landing", landingRoutes);
-app.use("/homepage", homepageRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
