@@ -4,28 +4,31 @@ import { __dirname } from "../lib/utils/pathUtils.js";
 import { __filename } from "../lib/utils/pathUtils.js";
 
 // Function to read JSON files
-const readAboutFile = () => {
+const readAboutFile = async () => {
   try {
     const filePath = path.join(__dirname, "../../data/about.json");
 
-    if (!fs.existsSync(filePath)) {
+    // Check if file exists asynchronously
+    try {
+      await fs.access(filePath);
+    } catch (err) {
       throw new Error("File not found at " + filePath);
     }
 
-    const aboutData = fs.readFileSync(filePath);
+    // Read file asynchronously
+    const aboutData = fs.readFile(filePath);
     const parsedData = JSON.parse(aboutData);
     return parsedData;
   } catch (err) {
     console.log("Error reading data", err);
     return null;
   }
-  
 };
 
 // GET /about
 const getAboutData = async (req, res) => {
   try {
-    const about = readAboutFile();
+    const about = await readAboutFile();
 
     if (!about) {
       return res.status(404).json({
@@ -56,10 +59,9 @@ const getAboutContentData = async (req, res) => {
         id: aboutContent.id,
         description: aboutContent.description,
         imageurl: aboutContent.imageurl,
-        alttext: aboutContent.alttext
+        alttext: aboutContent.alttext,
       };
-    })
-
+    });
 
     if (!aboutContent) {
       return res.status(404).json({

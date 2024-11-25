@@ -1,17 +1,22 @@
 import fs from "fs";
 import path from "path";
 import { __dirname } from "../lib/utils/pathUtils.js";
-import { __filename } from "../lib/utils/pathUtils.js"
+import { __filename } from "../lib/utils/pathUtils.js";
 
-const readHeroFile = () => {
+// Function to read JSON files
+const readHeroFile = async () => {
   try {
     const filePath = path.join(__dirname, "../../data/hero.json");
 
-    if (!fs.existsSync(filePath)) {
+    // Check if file exists asynchronously
+    try {
+      await fs.access(filePath);
+    } catch (err) {
       throw new Error("File not found at " + filePath);
     }
 
-    const heroData = fs.readFileSync(filePath);
+    // Read file asynchronously
+    const heroData = fs.readFile(filePath);
     const parsedData = JSON.parse(heroData);
     return parsedData;
   } catch (err) {
@@ -21,7 +26,7 @@ const readHeroFile = () => {
 };
 const getHeroData = async (req, res) => {
   try {
-    const hero = readHeroFile();
+    const hero = await readHeroFile();
 
     if (!hero) {
       return res.status(404).json({

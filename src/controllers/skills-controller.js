@@ -3,27 +3,32 @@ import path from "path";
 import { __dirname } from "../lib/utils/pathUtils.js";
 import { __filename } from "../lib/utils/pathUtils.js";
 
-const readSkillsFile = () => {
+// Function to read JSON files
+const readSkillsFile = async () => {
   try {
     const filesPath = path.join(__dirname, "../../data/skills.json");
-    
-    if(!fs.existsSync(filesPath)) {
-      throw new Error("File not found at " + filesPath);
+
+    // Check if file exists asynchronously
+    try {
+      await fs.access(filePath);
+    } catch (err) {
+      throw new Error("File not found at " + filePath);
     }
 
-    const skillsData = fs.readFileSync(filesPath);
+    // Read file asynchronously
+    const skillsData = fs.readFile(filesPath);
     const parsedData = JSON.parse(skillsData);
     return parsedData;
   } catch (err) {
     console.log("Error reading data", err);
     return null;
   }
-}
+};
 
 // GET /skills
 const getSkillsData = async (req, res) => {
   try {
-    const skillsData = readSkillsFile();
+    const skillsData = await readSkillsFile();
 
     if (!skillsData) {
       return res.status(404).json({
@@ -48,15 +53,15 @@ const getSkillsData = async (req, res) => {
 // GET /skills/content
 const getSkillsContentData = async (req, res) => {
   try {
-    const skillsData = readSkillsFile();
+    const skillsData = await readSkillsFile();
     const skillsContent = skillsData.map((skill) => {
       return {
         id: skill.id,
         title: skill.title,
         imageurl: skill.imageurl,
-        alttext: skill.alttext
+        alttext: skill.alttext,
       };
-    })
+    });
 
     if (!skillsContent) {
       return res.status(404).json({
@@ -67,9 +72,8 @@ const getSkillsContentData = async (req, res) => {
 
     res.status(200).json({
       message: "Data retrieved successfully.",
-      data: skillsContent
-    })
-
+      data: skillsContent,
+    });
   } catch (err) {
     console.log("Error fetching data", err);
     res.status(500).json({
