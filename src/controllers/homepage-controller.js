@@ -3,15 +3,20 @@ import path from "path";
 import { __dirname } from "../lib/utils/pathUtils.js";
 import { __filename } from "../lib/utils/pathUtils.js";
 
-const readHomepageFile = () => {
+// Function to read JSON files
+const readHomepageFile = async() => {
   try {
     const filePath = path.join(__dirname, "../../data/homepage.json");
     
-    if (!fs.existsSync(filePath)) {
+    // Check if file exists asynchronously
+    try {
+      await fs.access(filePath);
+    } catch (err) {
       throw new Error("File not found at " + filePath);
     }
 
-    const homepageData = fs.readFileSync(filePath);
+    // Read file asynchronously
+    const homepageData = fs.readFile(filePath);
     const parsedData = JSON.parse(homepageData);
     return parsedData;
   } catch (err) {
@@ -22,7 +27,7 @@ const readHomepageFile = () => {
 
 const getHomepageData = async (req, res) => {
   try {
-    const homepage = readHomepageFile();
+    const homepage = await readHomepageFile();
 
     if (!homepage) {
       return res.status(404).json({

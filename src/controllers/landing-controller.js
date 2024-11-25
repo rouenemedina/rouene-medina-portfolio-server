@@ -3,18 +3,22 @@ import path from "path";
 import { __dirname } from "../lib/utils/pathUtils.js";
 import { __filename } from "../lib/utils/pathUtils.js";
 
-const readLandingFile = () => {
+// Function to read JSON files
+const readLandingFile = async () => {
   try {
     const filePath = path.join(__dirname, "../../data/landing.json");
     console.log("filePath:", filePath);
 
-    if (!fs.existsSync(filePath)) {
+    // Check if file exists asynchronously
+    try {
+      await fs.access(filePath);
+    } catch (err) {
       throw new Error("File not found at " + filePath);
     }
 
-    const landingData = fs.readFileSync(filePath);
+    // Read file asynchronously
+    const landingData = await fs.readFile(filePath);
     const parsedData = JSON.parse(landingData);
-    console.log(parsedData);
     return parsedData;
   } catch (err) {
     console.log("Error reading data", err);
@@ -23,8 +27,8 @@ const readLandingFile = () => {
 };
 const getLandingData = async (req, res) => {
   try {
-    const landingData = readLandingFile();
-
+    const landingData = await readLandingFile();
+    
     if (!landingData) {
       return res.status(404).json({
         message: "Data not found.",

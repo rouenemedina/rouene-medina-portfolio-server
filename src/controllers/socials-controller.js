@@ -3,15 +3,20 @@ import path from "path";
 import { __dirname } from "../lib/utils/pathUtils.js";
 import { __filename } from "../lib/utils/pathUtils.js";
 
-const readSocialsFile = () => {
+// Function to read JSON files
+const readSocialsFile = async () => {
   try {
     const filePath = path.join(__dirname, "../../data/socials.json");
-    
-    if (!fs.existsSync(filePath)) {
+
+    // Check if file exists asynchronously
+    try {
+      await fs.access(filePath);
+    } catch (err) {
       throw new Error("File not found at " + filePath);
     }
 
-    const socialsData = fs.readFileSync(filePath);
+    // Read file asynchronously
+    const socialsData = fs.readFile(filePath);
     const parsedData = JSON.parse(socialsData);
     return parsedData;
   } catch (err) {
@@ -23,7 +28,7 @@ const readSocialsFile = () => {
 // GET /socials
 const getSocials = async (req, res) => {
   try {
-    const socialsData = readSocialsFile();
+    const socialsData = await readSocialsFile();
 
     if (!socialsData) {
       return res.status(404).json({

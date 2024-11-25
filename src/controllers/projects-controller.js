@@ -3,15 +3,20 @@ import path from "path";
 import { __dirname } from "../lib/utils/pathUtils.js";
 import { __filename } from "../lib/utils/pathUtils.js";
 
-const readProjectsFile = () => {
+// Function to read JSON files
+const readProjectsFile = async () => {
   try {
     const filePath = path.join(__dirname, "../../data/projects.json");
-    
-    if (!fs.existsSync(filePath)) {
+
+    // Check if file exists asynchronously
+    try {
+      await fs.access(filePath);
+    } catch (err) {
       throw new Error("File not found at " + filePath);
     }
 
-    const projectsData = fs.readFileSync(filePath);
+    // Read file asynchronously
+    const projectsData = fs.readFile(filePath);
     const parsedData = JSON.parse(projectsData);
     return parsedData;
   } catch (err) {
@@ -23,7 +28,7 @@ const readProjectsFile = () => {
 // GET /projects
 const getProjects = async (req, res) => {
   try {
-    const projectsData = readProjectsFile();
+    const projectsData = await readProjectsFile();
 
     if (!projectsData) {
       return res.status(404).json({
@@ -48,7 +53,7 @@ const getProjects = async (req, res) => {
 // GET /projects/list
 const getProjectsList = async (req, res) => {
   try {
-    const projectsData = readProjectsFile();
+    const projectsData = await readProjectsFile();
     const projectsListData = projectsData.map((project) => {
       return {
         id: project.id,
@@ -59,7 +64,7 @@ const getProjectsList = async (req, res) => {
     res.status(200).json({
       message: "Data retrieved successfully.",
       data: projectsListData,
-    })
+    });
   } catch (err) {
     console.log("Error fetching data", err);
     res.status(500).json({
@@ -72,8 +77,10 @@ const getProjectsList = async (req, res) => {
 // GET /projects/:id
 const getProjectById = async (req, res) => {
   try {
-    const projectsData = readProjectsFile();
-    const project = projectsData.find((project) => project.id === req.params.id);
+    const projectsData = await readProjectsFile();
+    const project = projectsData.find(
+      (project) => project.id === req.params.id
+    );
 
     if (!project) {
       return res.status(404).json({
@@ -84,8 +91,8 @@ const getProjectById = async (req, res) => {
 
     res.status(200).json({
       message: "Data retrieved successfully.",
-      data: project
-    })
+      data: project,
+    });
   } catch (err) {
     console.log("Error fetching data", err);
     res.status(500).json({
