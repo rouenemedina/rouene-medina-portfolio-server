@@ -7,7 +7,7 @@ import { __filename } from "../lib/utils/pathUtils.js";
 const readLandingFile = async () => {
   try {
     // const filePath = path.join(__dirname, "data", "landing.json");
-    const filePath = path.join(process.cwd(), "../data", "landing.json");
+    const filePath = path.join(process.cwd(), "./src/data", "landing.json");
     console.log("Computed file path:", filePath);
 
     // Check if file exists asynchronously
