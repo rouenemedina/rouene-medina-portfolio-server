@@ -17,7 +17,7 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 
 const corsOptions = {
-  origin: ["https://rouenemedina.netlify.app", "http://localhost:8080"],
+  origin: ["https://rouenemedina.netlify.app", "http://localhost:5173"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
