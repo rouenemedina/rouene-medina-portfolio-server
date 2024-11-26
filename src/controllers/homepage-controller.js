@@ -6,7 +6,7 @@ import { __filename } from "../lib/utils/pathUtils.js";
 // Function to read JSON files
 const readHomepageFile = async() => {
   try {
-    const filePath = path.join(process.cwd(), "./src/data", "homepage.json");
+    const filePath = path.join(process.cwd(), "src", "data", "homepage.json");
     
     // Check if file exists asynchronously
     await fs.access(filePath);
