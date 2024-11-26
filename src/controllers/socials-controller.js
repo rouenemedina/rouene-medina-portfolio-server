@@ -6,17 +6,14 @@ import { __filename } from "../lib/utils/pathUtils.js";
 // Function to read JSON files
 const readSocialsFile = async () => {
   try {
-    const filePath = path.join(__dirname, "../../data/socials.json");
+    const filePath = path.join(process.cwd(), "./src/data", "socials.json");
+    console.log("Computed file path:", filePath);
 
     // Check if file exists asynchronously
-    try {
-      await fs.access(filePath);
-    } catch (err) {
-      throw new Error("File not found at " + filePath);
-    }
+    await fs.access(filePath);
 
     // Read file asynchronously
-    const socialsData = fs.readFile(filePath);
+    const socialsData = await fs.readFile(filePath, "utf-8");
     const parsedData = JSON.parse(socialsData);
     return parsedData;
   } catch (err) {

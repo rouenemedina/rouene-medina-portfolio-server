@@ -6,7 +6,6 @@ import { __filename } from "../lib/utils/pathUtils.js";
 // Function to read JSON files
 const readLandingFile = async () => {
   try {
-    // const filePath = path.join(__dirname, "data", "landing.json");
     const filePath = path.join(process.cwd(), "./src/data", "landing.json");
     console.log("Computed file path:", filePath);
 

@@ -6,17 +6,13 @@ import { __filename } from "../lib/utils/pathUtils.js";
 // Function to read JSON files
 const readHomepageFile = async() => {
   try {
-    const filePath = path.join(__dirname, "../../data/homepage.json");
+    const filePath = path.join(process.cwd(), "./src/data", "homepage.json");
     
     // Check if file exists asynchronously
-    try {
-      await fs.access(filePath);
-    } catch (err) {
-      throw new Error("File not found at " + filePath);
-    }
+    await fs.access(filePath);
 
     // Read file asynchronously
-    const homepageData = fs.readFile(filePath);
+    const homepageData = await fs.readFile(filePath, "utf-8");
     const parsedData = JSON.parse(homepageData);
     return parsedData;
   } catch (err) {

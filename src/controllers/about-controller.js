@@ -6,17 +6,14 @@ import { __filename } from "../lib/utils/pathUtils.js";
 // Function to read JSON files
 const readAboutFile = async () => {
   try {
-    const filePath = path.join(__dirname, "../../data/about.json");
+    const filePath = path.join(process.cwd(), "./src/data", "about.json");
+    console.log("Computed file path:", filePath);
 
     // Check if file exists asynchronously
-    try {
-      await fs.access(filePath);
-    } catch (err) {
-      throw new Error("File not found at " + filePath);
-    }
+    await fs.access(filePath);
 
     // Read file asynchronously
-    const aboutData = fs.readFile(filePath);
+    const aboutData = await fs.readFile(filePath, "utf-8");
     const parsedData = JSON.parse(aboutData);
     return parsedData;
   } catch (err) {
@@ -53,7 +50,7 @@ const getAboutData = async (req, res) => {
 // GET /aboutcontent
 const getAboutContentData = async (req, res) => {
   try {
-    const about = readAboutFile();
+    const about = await readAboutFile();
     const aboutContent = about.map((aboutContent) => {
       return {
         id: aboutContent.id,
