@@ -1,5 +1,5 @@
 import fs from "fs/promises";
-import path from "path";
+import path, { parse } from "path";
 import { __dirname } from "../lib/utils/pathUtils.js";
 import { __filename } from "../lib/utils/pathUtils.js";
 
@@ -8,7 +8,7 @@ const readProjectsFile = async () => {
   try {
     const filePath = path.join(process.cwd(), "./src/data", "projects.json");
     console.log("Computed file path:", filePath);
-    
+
     // Check if file exists asynchronously
     await fs.access(filePath);
 
@@ -27,7 +27,7 @@ const getProjects = async (req, res) => {
   try {
     const projectsData = await readProjectsFile();
 
-    if (!projectsData) {
+    if (!projectsData || projectsData.length === 0) {
       return res.status(404).json({
         message: "Data not found.",
         error: "404",
@@ -51,12 +51,10 @@ const getProjects = async (req, res) => {
 const getProjectsList = async (req, res) => {
   try {
     const projectsData = await readProjectsFile();
-    const projectsListData = projectsData.map((project) => {
-      return {
+    const projectsListData = projectsData.map((project) => ({
         id: project.id,
         title: project.title,
-      };
-    });
+    }));
 
     res.status(200).json({
       message: "Data retrieved successfully.",
@@ -75,9 +73,9 @@ const getProjectsList = async (req, res) => {
 const getProjectById = async (req, res) => {
   try {
     const projectsData = await readProjectsFile();
-    const project = projectsData.find(
-      (project) => project.id === req.params.id
-    );
+
+    const projectId = parse(req.params.id, 10);
+    const project = projectsData.find((project) => project.id === projectId);
 
     if (!project) {
       return res.status(404).json({

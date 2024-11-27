@@ -51,14 +51,16 @@ const getAboutData = async (req, res) => {
 const getAboutContentData = async (req, res) => {
   try {
     const about = await readAboutFile();
-    const aboutContent = about.map((aboutContent) => {
+
+    const aboutContent = about.flatMap((aboutContent) => 
+      aboutContent.content.map((content) => {
       return {
-        id: aboutContent.id,
-        description: aboutContent.description,
-        imageurl: aboutContent.imageurl,
-        alttext: aboutContent.alttext,
-      };
-    });
+        id: content.id,
+        description: content.description,
+        imageurl: content.imageurl,
+        alttext: content.alttext,
+      }})
+    );
 
     if (!aboutContent) {
       return res.status(404).json({

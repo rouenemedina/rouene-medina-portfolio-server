@@ -8,7 +8,7 @@ const readSkillsFile = async () => {
   try {
     const filePath = path.join(process.cwd(), "./src/data", "skills.json");
     console.log("Computed file path:", filePath);
-    
+
     // Check if file exists asynchronously
     await fs.access(filePath);
 
@@ -51,14 +51,15 @@ const getSkillsData = async (req, res) => {
 const getSkillsContentData = async (req, res) => {
   try {
     const skillsData = await readSkillsFile();
-    const skillsContent = skillsData.map((skill) => {
-      return {
-        id: skill.id,
-        title: skill.title,
-        imageurl: skill.imageurl,
-        alttext: skill.alttext,
-      };
-    });
+
+    const skillsContent = skillsData.flatMap((skillCategory) =>
+      skillCategory.content.map((skillList) => ({
+        id: skillList.id,
+        title: skillList.title,
+        imageurl: skillList.imageurl,
+        alttext: skillList.alttext,
+      }))
+    );
 
     if (!skillsContent) {
       return res.status(404).json({
