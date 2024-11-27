@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from "fs/promises";
 import path from "path";
 import { __dirname } from "../lib/utils/pathUtils.js";
 import { __filename } from "../lib/utils/pathUtils.js";
@@ -47,7 +47,7 @@ const getAboutData = async (req, res) => {
   }
 };
 
-// GET /aboutcontent
+// GET /about/content
 const getAboutContentData = async (req, res) => {
   try {
     const about = await readAboutFile();
