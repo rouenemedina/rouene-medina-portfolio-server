@@ -52,14 +52,15 @@ const getAboutContentData = async (req, res) => {
   try {
     const about = await readAboutFile();
 
-    const aboutContent = about.flatMap((aboutContent) => 
+    const aboutContent = about.flatMap((aboutContent) =>
       aboutContent.content.map((content) => {
-      return {
-        id: content.id,
-        description: content.description,
-        imageurl: content.imageurl,
-        alttext: content.alttext,
-      }})
+        return {
+          id: content.id,
+          description: content.description,
+          imageurl: content.imageurl,
+          alttext: content.alttext,
+        };
+      })
     );
 
     if (!aboutContent) {

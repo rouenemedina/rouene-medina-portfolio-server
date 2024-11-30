@@ -53,12 +53,15 @@ const getSkillsContentData = async (req, res) => {
     const skillsData = await readSkillsFile();
 
     const skillsContent = skillsData.flatMap((skillCategory) =>
-      skillCategory.content.map((skillList) => ({
-        id: skillList.id,
-        title: skillList.title,
-        imageurl: skillList.imageurl,
-        alttext: skillList.alttext,
-      }))
+      skillCategory.content.map((skillList) => {
+        return {
+          id: skillList.id,
+          title: skillList.title,
+          imageurl: skillList.imageurl,
+          alttext: skillList.alttext,
+          skillId: skillCategory.id,
+        };
+      })
     );
 
     if (!skillsContent) {
