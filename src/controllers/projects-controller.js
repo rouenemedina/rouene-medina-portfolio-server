@@ -27,7 +27,7 @@ const getProjects = async (req, res) => {
   try {
     const projectsData = await readProjectsFile();
 
-    if (!projectsData || projectsData.length === 0) {
+    if (!projectsData) {
       return res.status(404).json({
         message: "Data not found.",
         error: "404",

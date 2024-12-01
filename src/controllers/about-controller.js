@@ -25,9 +25,9 @@ const readAboutFile = async () => {
 // GET /about
 const getAboutData = async (req, res) => {
   try {
-    const about = await readAboutFile();
+    const aboutData = await readAboutFile();
 
-    if (!about) {
+    if (!aboutData) {
       return res.status(404).json({
         message: "Data not found.",
         error: "404",
@@ -36,7 +36,7 @@ const getAboutData = async (req, res) => {
 
     res.status(200).json({
       message: "Data retrieved successfully.",
-      data: about,
+      data: aboutData,
     });
   } catch (err) {
     console.log("Error fetching data", err);
