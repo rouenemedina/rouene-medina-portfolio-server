@@ -51,14 +51,17 @@ const getProjects = async (req, res) => {
 const getProjectsList = async (req, res) => {
   try {
     const projectsData = await readProjectsFile();
-    const projectsListData = projectsData.map((project) => ({
-        id: project.id,
-        title: project.title,
-    }));
+    
+    const projectsList = projectsData.flatMap((projectsList) => 
+      projectsList.content.map((listItem) => ({
+          id: listItem.id,
+          title: listItem.title,
+      }))
+    );
 
     res.status(200).json({
       message: "Data retrieved successfully.",
-      data: projectsListData,
+      data: projectsList,
     });
   } catch (err) {
     console.log("Error fetching data", err);
