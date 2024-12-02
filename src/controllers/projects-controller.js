@@ -91,7 +91,7 @@ const getProjectById = async (req, res) => {
 
     res.status(200).json({
       message: "Data retrieved successfully.",
-      data: project.content,
+      data: project,
     });
   } catch (err) {
     console.log("Error fetching data", err);
