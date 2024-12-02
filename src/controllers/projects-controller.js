@@ -77,7 +77,7 @@ const getProjectById = async (req, res) => {
   try {
     const projectsData = await readProjectsFile();
 
-    const projectId = parse(req.params.id, 10);
+    const projectId = parseInt(req.params.id, 10);
     const project = projectsData.find((project) => project.id === projectId);
 
     if (!project) {
@@ -87,9 +87,18 @@ const getProjectById = async (req, res) => {
       });
     }
 
+    const idContent = project.content[0].content[0];
+
+    if(!idContent) {
+      return res.status(404).json({
+        message: "Data not found.",
+        error: "404",
+      });
+    }
+
     res.status(200).json({
       message: "Data retrieved successfully.",
-      data: project,
+      data: idContent,
     });
   } catch (err) {
     console.log("Error fetching data", err);
