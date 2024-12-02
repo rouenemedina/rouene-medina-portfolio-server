@@ -9,16 +9,13 @@ const readSkillsFile = async () => {
     const filePath = path.join(process.cwd(), "./src/data", "skills.json");
     console.log("Computed file path:", filePath);
 
-    // Check if file exists asynchronously
-    await fs.access(filePath);
-
     // Read file asynchronously
     const skillsData = await fs.readFile(filePath, "utf-8");
     const parsedData = JSON.parse(skillsData);
     return parsedData;
   } catch (err) {
     console.log("Error reading data", err);
-    return null;
+    throw new Error("Failed to read file.");
   }
 };
 
@@ -27,7 +24,8 @@ const getSkillsData = async (req, res) => {
   try {
     const skillsData = await readSkillsFile();
 
-    if (!skillsData) {
+    // Check if data exists and is not empty
+    if (!skillsData || skillsData.length === 0) {
       return res.status(404).json({
         message: "Data not found.",
         error: "404",
@@ -64,7 +62,8 @@ const getSkillsContentData = async (req, res) => {
       })
     );
 
-    if (!skillsContent) {
+    // Check if data exists and is not empty
+    if (!skillsContent || skillsContent.length === 0) {
       return res.status(404).json({
         message: "Data not found.",
         error: "404",

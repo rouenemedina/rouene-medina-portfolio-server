@@ -9,23 +9,21 @@ const readHeroFile = async () => {
     const filePath = path.join(process.cwd(), "./src/data", "hero.json");
     console.log("Computed file path:", filePath);
 
-    // Check if file exists asynchronously
-    await fs.access(filePath);
-
     // Read file asynchronously
     const heroData = await fs.readFile(filePath, "utf-8");
     const parsedData = JSON.parse(heroData);
     return parsedData;
   } catch (err) {
-    console.log("Error reading data", err);
-    return null;
+    console.log("Error reading file", err);
+    throw new Error("Failed to read file.");
   }
 };
 const getHeroData = async (req, res) => {
   try {
     const hero = await readHeroFile();
 
-    if (!hero) {
+    // Check if data exists and is not empty
+    if (!hero || hero.length === 0) {
       return res.status(404).json({
         message: "Data not found.",
         error: "404",

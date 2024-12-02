@@ -9,16 +9,13 @@ const readSocialsFile = async () => {
     const filePath = path.join(process.cwd(), "./src/data", "socials.json");
     console.log("Computed file path:", filePath);
 
-    // Check if file exists asynchronously
-    await fs.access(filePath);
-
     // Read file asynchronously
     const socialsData = await fs.readFile(filePath, "utf-8");
     const parsedData = JSON.parse(socialsData);
     return parsedData;
   } catch (err) {
-    console.log("Error reading data", err);
-    return null;
+    console.log("Error reading file", err);
+    throw new Error("Failed to read file.");
   }
 };
 
@@ -27,7 +24,8 @@ const getSocials = async (req, res) => {
   try {
     const socialsData = await readSocialsFile();
 
-    if (!socialsData) {
+    // Check if data exists and is not empty
+    if (!socialsData || socialsData.length === 0) {
       return res.status(404).json({
         message: "Data not found.",
         error: "404",
