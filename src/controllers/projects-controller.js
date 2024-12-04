@@ -79,7 +79,23 @@ const getProjectById = async (req, res) => {
     const projectsData = await readProjectsFile();
     const projectId = parseInt(req.params.id, 10);
 
-    const project = projectsData.find((project) => project.id === projectId);
+    // Function to find project by ID
+    const findProjectById = (projects, id) => {
+      for (const project of projects) {
+        if (project.id === id) {
+          return project;
+        }
+        if (project.content && Array.isArray(project.content)) {
+          const foundProject = findProjectById(project.content, id);
+          if (foundProject) {
+            return foundProject;
+          }
+        }
+      }
+      return null;
+    };
+
+    const project = findProjectById(projectsData, projectId);
 
     // Check if data exists and is not empty
     if (!project || project.content.length === 0) {
