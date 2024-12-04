@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "title": "CRAFTED WITH CODE",
     "imageurl": "https://res.cloudinary.com/dzqivwyjr/image/upload/v1731056806/projects_background_pcjvgh.jpg",
     "alttext": "Projects Background Image",
@@ -10,7 +9,6 @@
         "title": "PhotoNest",
         "content": [
           {
-            "id": 1,
             "description": "A dynamic web application designed to showcase photographer’s portfolios, emphasizing robust functionality and visual appeal.",
             "imageurl": "https://res.cloudinary.com/dzqivwyjr/image/upload/v1731056804/projects_photonest_qdoycp.png",
             "alttext": "PhotoNest",
@@ -24,7 +22,6 @@
         "title": "PhotoNest v2.0",
         "content": [
           {
-            "id": 1,
             "description": " Welcome to the second version of PhotoNest, a responsive application designed for photographers to showcase their work and connect with clients. This version has been entirely rewritten in TypeScript to enhance code reliability and maintainability.",
             "imageurl": "https://res.cloudinary.com/dzqivwyjr/image/upload/v1731056804/projects_photonest_qdoycp.png",
             "alttext": "PhotoNest v2.0",
